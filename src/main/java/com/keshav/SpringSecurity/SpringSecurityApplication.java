@@ -11,3 +11,7 @@ public class SpringSecurityApplication {
 	}
 
 }
+
+//spring.security.user.name=keshav
+//spring.security.user.password=keshav7
+//--> by writing like this in application.properties files we can change the username and password
