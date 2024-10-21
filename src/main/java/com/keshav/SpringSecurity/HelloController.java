@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
     @GetMapping("/")
     public String greet(HttpServletRequest request){
-       return "Welcome to Site  " + request.getSession().getId(); // Created this controller and secured by Spring Security Dependencies.
-    } // This How we can print session id on localhost page
+       return "Welcome to Site  " + request.getSession().getId();
+    }
 }
