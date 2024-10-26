@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
-    // To register user in DB (Controller)
+   // Step-1 // To register user in DB (Controller)
     @Autowired
     private UserService service;
     @PostMapping("/register")

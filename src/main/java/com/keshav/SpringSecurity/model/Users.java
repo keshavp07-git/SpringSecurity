@@ -1,6 +1,6 @@
 package com.keshav.SpringSecurity.model;
 
-// Step 3- This file Users.java will connect UserRepo and UserRepo extends JPA so with this file we will get id , username , password from table from Database ,
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 @Entity

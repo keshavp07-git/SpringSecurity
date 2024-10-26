@@ -14,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -34,15 +35,12 @@ public class SecurityConfig {
                 sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
 
     }
-    //Step 1- create Custom Authenticator which will be DB . Go to Service.......
+    //Step 2 - Encrypt the password
     @Bean
-    public AuthenticationProvider authenticationProvider (){ // This is an Interface we can't create object so we have to find a class which extends it,
-        //DaoAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider and then AbstractJaasAuthenticationProvider implements AuthenticationProvider
-        // Dao used to authenticate from DB.
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(); // This is used to connect to database.
-        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance()); // For this branch we are not using any password encoder. In next we will...
-        provider.setUserDetailsService(userDetailsService); // we can use default userDetailsService but we will make our own
-        // so we have just make a class of userDetailsService because it is an interface,
+    public AuthenticationProvider authenticationProvider (){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(new BCryptPasswordEncoder(12)); // Method will check the hashes that are converted .
+        provider.setUserDetailsService(userDetailsService);
         return provider;
 
     }

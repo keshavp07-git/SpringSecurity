@@ -9,21 +9,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-// This file will process and check is credentials is in DB or Correct
+
 @Service
 public class MyUserDetailsService implements UserDetailsService {
     @Autowired
-    private UserRepo repo ; // Automatically Connect with UserRepo // Step 2
+    private UserRepo repo ;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users user = repo.findByUsername(username); // Finding by Username
+        Users user = repo.findByUsername(username);
         if(user == null) {
-            System.out.println("User Not Found"); // It is for console
-            throw new UsernameNotFoundException("User Not Found"); // It is for our machine
+            System.out.println("User Not Found");
+            throw new UsernameNotFoundException("User Not Found");
         }
         return new UserPrincipal(user);
-// if We found Username then we want our data but UserDetails is an Interface we can't simply create object
-// and get user details , there are 2 Option search for class which implement UserDetails or create class
-// so we create class.
+
     }
 }

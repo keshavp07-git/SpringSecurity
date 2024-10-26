@@ -7,8 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-// Step 5 implements all method boolean make to true create constructor of Users
-// user.getPassword and user.getUserName replace in getPassword and UserName
+
 public class UserPrincipal implements UserDetails {
 
     private Users user;
@@ -17,7 +16,7 @@ public class UserPrincipal implements UserDetails {
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("USER")); // It is used to give role to logged in User who is , admin , user , guest etc .
+        return Collections.singleton(new SimpleGrantedAuthority("USER"));
     }
 
     @Override
